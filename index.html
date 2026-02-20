@@ -62,7 +62,36 @@ background:#1d4ed8;
 <button>Create Account</button>
 
 </div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyC_PaD8Sp6b_yDPrm05HJIG0BrDU6qHR9A",
+  authDomain: "lumera-education-platform.firebaseapp.com",
+  projectId: "lumera-education-platform",
+  storageBucket: "lumera-education-platform.firebasestorage.app",
+  messagingSenderId: "1017964684136",
+  appId: "1:1017964684136:web:cb14340a8046c34d4aacdd"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// botão criar conta
+document.querySelector("button").addEventListener("click", () => {
+  const email = prompt("Digite seu email:");
+  const password = prompt("Digite sua senha:");
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      alert("Conta criada com sucesso!");
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+});
+</script>
 </body>
 
 </html>
