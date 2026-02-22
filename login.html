@@ -19,37 +19,23 @@
 
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-const firebaseConfig = {
-  apiKey: "SUA_API_KEY",
-  authDomain: "SEU_AUTH_DOMAIN",
-  projectId: "SEU_PROJECT_ID",
-  appId: "SEU_APP_ID"
-};
+const auth = getAuth();
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
 
-window.login = function() {
+    alert("Login realizado com sucesso!");
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+    window.location.href = "dashboard.html";
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
+  })
+  .catch((error) => {
 
-      alert("Login feito com sucesso!");
-      window.location.href = "dashboard.html";
+    alert(error.message);
 
-    })
-    .catch((error) => {
-
-      alert(error.message);
-
-    });
-
+  });
 }
 
 </script>
