@@ -16,26 +16,49 @@
   Não tem conta?
   <a href="index.html">Criar conta</a>
 </p>
-
 <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+  const firebaseConfig = {
+    apiKey: "SUA_API_KEY",
+    authDomain: "SEU_AUTH_DOMAIN",
+    projectId: "SEU_PROJECT_ID",
+    storageBucket: "SEU_STORAGE_BUCKET",
+    messagingSenderId: "SEU_MESSAGING_SENDER_ID",
+    appId: "SEU_APP_ID"
+  };
 
-const auth = getAuth();
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+  // exemplo criar conta
+  window.criarConta = function(email, password) {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        alert("Conta criada com sucesso!");
+        window.location.href = "login.html";
+      })
+      .catch((error) => {
+        alert("Erro: " + error.message);
+      });
+  };
 
-    alert("Login realizado com sucesso!");
-
-    window.location.href = "dashboard.html";
-
-  })
-  .catch((error) => {
-
-    alert(error.message);
-
-  });
+  // exemplo login
+  window.login = function(email, password) {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        alert("Login feito com sucesso!");
+      })
+      .catch((error) => {
+        alert("Erro: " + error.message);
+      });
+  };
+</script>
 }
 
 </script>
