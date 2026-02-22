@@ -82,21 +82,14 @@ const auth = getAuth(app);
 document.querySelector("button").addEventListener("click", () => {
   const email = prompt("Digite seu email:");
   const password = prompt("Digite sua senha:");
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
 
- createUserWithEmailAndPassword(auth, email, password)
-.then(() => {
-  window.location.href = "dashboard.html";
-})
-.catch((error) => {
-  alert(error.message);
-});
-    .then(() => {
-      alert("Conta criada com sucesso!");
-    })
-    .catch((error) => {
-      alert(error.message);
-    });
-});
+    alert("Conta criada com sucesso!");
+
+    window.location.href = "dashboard.html";
+
+  })
 </script>
 </body>
 
