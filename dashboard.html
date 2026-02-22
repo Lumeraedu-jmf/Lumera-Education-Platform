@@ -1,68 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Lumera Dashboard</title>
-  <style>
-    body {
-      font-family: Arial;
-      background: #0b132b;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .box {
-      text-align: center;
-      background: #1c2541;
-      padding: 40px;
-      border-radius: 10px;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      background: #3a86ff;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
+<title>Dashboard</title>
 </head>
 <body>
 
-<div class="box">
-  <h1>Bem-vindo ao Lumera ✨</h1>
-  <p>Sua conta foi criada com sucesso.</p>
+<h1>Bem-vindo!</h1>
 
-  <button onclick="logout()">Sair</button>
-</div>
+<button onclick="logout()">Sair</button>
 
 <script type="module">
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC_PaD8Sp6b_yDPrm05HJIG0BrDU6qHR9A",
-  authDomain: "lumera-education-platform.firebaseapp.com",
-  projectId: "lumera-education-platform",
-  storageBucket: "lumera-education-platform.firebasestorage.app",
-  messagingSenderId: "1017964684136",
-  appId: "1:1017964684136:web:cb14340a8046c34d4aacdd"
+  apiKey: "SUA_API_KEY",
+  authDomain: "SEU_AUTH_DOMAIN",
+  projectId: "SEU_PROJECT_ID",
+  appId: "SEU_APP_ID"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-window.logout = function() {
+window.logout = function(){
+
   signOut(auth).then(() => {
-    window.location.href = "index.html";
+
+    window.location.href = "login.html";
+
   });
+
 }
+
 </script>
 
 </body>
